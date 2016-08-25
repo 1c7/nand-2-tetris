@@ -1,0 +1,34 @@
+// This file is part of www.nand2tetris.org
+// and the book "The Elements of Computing Systems"
+// by Nisan and Schocken, MIT Press.
+// File name: projects/01/Mux.hdl
+
+/** 
+ * Multiplexor:
+ * out = a if sel == 0
+ *       b otherwise
+ */
+
+CHIP Mux {
+    IN a,b,sel;
+    OUT out;
+
+    PARTS:
+    Not(in=sel, out=notsel);
+    And(a=a, b=notsel, out=w1); 
+    And(a=b, b=sel, out=w2);
+    Or(a=w1, b=w2, out=out);
+
+    // copy from github
+    // no idea why it work    
+    // http://people.duke.edu/~nts9/logicgates/Mux.hdl  
+    // http://people.duke.edu/~nts9/logicgates/  
+
+    // 按照 Unite 1 里的说法是
+    // 找出所有结果为 1 的行，逐个处理，
+    // 为每一个想出一个表达式，这个式子在这一行的结果是 1 
+    // 但是其他所有行，都是0 
+    // 然后你现在手头有了一堆式子, 用 OR 把他们串起来，然后自己用各种算数进行缩减。
+                                              
+
+}
